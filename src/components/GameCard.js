@@ -12,8 +12,8 @@ function GameCard(props) {
       <Text>Plataforma: {props.game.platform}</Text>
       <Text>
         Categoria/Gênero:{" "}
-        {props.game.categories.map((c) => (
-          <Text>{c} </Text>
+        {props.game.categories.map((category) => (
+          <Text>{category} </Text>
         ))}
       </Text>
       <Button title={"R$" + props.game.price.toString()} onPress={addToCart} />

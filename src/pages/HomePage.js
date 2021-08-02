@@ -7,12 +7,12 @@ import GameCard from "../components/GameCard";
 
 // import CartIcon from "../assets/cart.svg";
 
-function pages() {
+function pages({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.appBar}>
         <Text>Logo</Text>
-        <Button title="Carrinho" />
+        <Button title="Carrinho" onPress={() => navigation.navigate("Cart")} />
       </View>
 
       <View>
