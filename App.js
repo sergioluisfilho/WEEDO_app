@@ -12,7 +12,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="HomePage" component={HomePage} />
+        <Stack.Screen
+          name="HomePage"
+          component={HomePage}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="Cart" component={Cart} />
       </Stack.Navigator>
     </NavigationContainer>
