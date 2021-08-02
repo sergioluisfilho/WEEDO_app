@@ -26,11 +26,12 @@ function pages({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: "#fff",
-    marginLeft: 16,
-    marginRight: 16,
-    marginBottom: 20,
-    marginTop: 20,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingBottom: 20,
+    paddingTop: 20,
   },
 
   appBar: {

@@ -15,7 +15,9 @@ export default function App() {
         <Stack.Screen
           name="HomePage"
           component={HomePage}
-          options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+          }}
         />
         <Stack.Screen name="Cart" component={Cart} />
       </Stack.Navigator>
