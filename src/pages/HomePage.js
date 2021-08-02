@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Button } from "react-native";
 
 import games from "../utils/products";
 
@@ -12,7 +12,7 @@ function pages() {
     <View style={styles.container}>
       <View style={styles.appBar}>
         <Text>Logo</Text>
-        <Text>Cart</Text>
+        <Button title="Carrinho" />
       </View>
 
       <View>
