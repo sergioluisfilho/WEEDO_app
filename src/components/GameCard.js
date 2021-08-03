@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, Button, Alert } from "react-native";
+import { StyleSheet, Text, View, Image, Alert } from "react-native";
+import { Card, ListItem, Button, Icon } from "react-native-elements";
 
 var imageMap = {
   "animalCrossing.png": require("../assets/images/animalCrossing.png"),
@@ -23,18 +24,30 @@ function GameCard(props) {
   const { items, setItems } = useCart();
 
   return (
-    <View>
-      <Image style={styles.gameImg} source={imageMap[game.imageName]} />
-      <Text>{game.name}</Text>
+    <Card>
+      <Card.Image source={imageMap[game.imageName]}></Card.Image>
+      <Card.Title>{game.name}</Card.Title>
+      <Card.Divider />
       <Text>Plataforma: {game.platform}</Text>
-      <Text>
+      <Text style={{ marginBottom: 10 }}>
         Categoria/Gênero:{" "}
         {game.categories.map((category) => (
           <Text key={game.categories.indexOf(category)}>{category} </Text>
         ))}
       </Text>
-      <Button title={"R$" + game.price.toString()} onPress={addToCart} />
-    </View>
+      <Button
+        icon={<Icon color="#ffffff" />}
+        buttonStyle={{
+          borderRadius: 0,
+          marginLeft: 0,
+          marginRight: 0,
+          marginBottom: 0,
+          backgroundColor: "#4CC5D2",
+        }}
+        title={"R$" + game.price.toString()}
+        onPress={addToCart}
+      />
+    </Card>
   );
 }
 
