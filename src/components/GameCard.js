@@ -2,6 +2,8 @@ import React from "react";
 import { StyleSheet, Text, View, Image, Alert } from "react-native";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
 
+import Cart from "../assets/cart.png";
+
 var imageMap = {
   "animalCrossing.png": require("../assets/images/animalCrossing.png"),
   "zelda.png": require("../assets/images/zelda.png"),
@@ -31,7 +33,7 @@ function GameCard(props) {
       ></Card.Image>
       <Card.Title>{game.name}</Card.Title>
 
-      <Text>Plataforma: {game.platform}</Text>
+      <Text style={{ marginBottom: 10 }}>Plataforma: {game.platform}</Text>
       <Text style={{ marginBottom: 10 }}>
         Categoria/Gênero:{" "}
         {game.categories.map((category) => (
@@ -39,9 +41,9 @@ function GameCard(props) {
         ))}
       </Text>
       <Button
-        icon={<Icon color="#ffffff" />}
+        icon={<Image source={Cart} />}
         buttonStyle={styles.cardBtn}
-        title={"R$ " + game.price.toString()}
+        title={" R$ " + game.price.toString()}
         onPress={addToCart}
       />
     </Card>
