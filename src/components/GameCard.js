@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, Alert } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Alert,
+  TouchableOpacity,
+} from "react-native";
 import { Card, ListItem, Button, Icon } from "react-native-elements";
 
 import Cart from "../assets/cart.png";
@@ -26,27 +33,33 @@ function GameCard(props) {
   const { items, setItems } = useCart();
 
   return (
-    <Card containerStyle={styles.container}>
+    <View style={styles.container}>
       <Card.Image
         style={styles.gameImg}
         source={imageMap[game.imageName]}
       ></Card.Image>
       <Card.Title>{game.name}</Card.Title>
 
-      <Text style={{ marginBottom: 10 }}>Plataforma: {game.platform}</Text>
-      <Text style={{ marginBottom: 10 }}>
+      <Text style={{ paddingBottom: 10 }}>Plataforma: {game.platform}</Text>
+      <Text style={{ paddingBottom: 10 }}>
         Categoria/Gênero:{" "}
         {game.categories.map((category) => (
           <Text key={game.categories.indexOf(category)}>{category} </Text>
         ))}
       </Text>
-      <Button
-        icon={<Image source={Cart} />}
-        buttonStyle={styles.cardBtn}
-        title={" R$ " + game.price.toString()}
-        onPress={addToCart}
-      />
-    </Card>
+      <View style={{ flexDirection: "column", justifyContent: "flex-end" }}>
+        <Button
+          icon={<Image source={Cart} />}
+          buttonStyle={styles.cardBtn}
+          title={" R$ " + game.price.toString()}
+          onPress={addToCart}
+        />
+      </View>
+      {/* <TouchableOpacity style={styles.cardBtn} onPress={addToCart}>
+        <Image source={Cart} />
+        <Text>{" R$ " + game.price.toString()}</Text>
+      </TouchableOpacity> */}
+    </View>
   );
 }
 
@@ -56,16 +69,23 @@ const styles = StyleSheet.create({
     paddingLeft: 0,
     paddingRight: 0,
     paddingBottom: 0,
+    marginTop: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    marginBottom: 20,
     borderRadius: 16,
     backgroundColor: "#F6F6F6",
+    maxWidth: 150,
+    maxHeight: 300,
   },
   gameImg: {
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
+    maxWidth: 150,
+    height: 78,
   },
   cardBtn: {
     borderRadius: 0,
-    marginTop: 40,
     marginLeft: 0,
     marginRight: 0,
     marginBottom: 0,
