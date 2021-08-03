@@ -44,7 +44,7 @@ function GameCard(props) {
           marginBottom: 0,
           backgroundColor: "#4CC5D2",
         }}
-        title={"R$" + game.price.toString()}
+        title={"R$ " + game.price.toString()}
         onPress={addToCart}
       />
     </Card>
