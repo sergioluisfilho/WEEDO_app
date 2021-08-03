@@ -24,10 +24,13 @@ function GameCard(props) {
   const { items, setItems } = useCart();
 
   return (
-    <Card>
-      <Card.Image source={imageMap[game.imageName]}></Card.Image>
+    <Card containerStyle={styles.container}>
+      <Card.Image
+        style={styles.gameImg}
+        source={imageMap[game.imageName]}
+      ></Card.Image>
       <Card.Title>{game.name}</Card.Title>
-      <Card.Divider />
+
       <Text>Plataforma: {game.platform}</Text>
       <Text style={{ marginBottom: 10 }}>
         Categoria/Gênero:{" "}
@@ -37,13 +40,7 @@ function GameCard(props) {
       </Text>
       <Button
         icon={<Icon color="#ffffff" />}
-        buttonStyle={{
-          borderRadius: 0,
-          marginLeft: 0,
-          marginRight: 0,
-          marginBottom: 0,
-          backgroundColor: "#4CC5D2",
-        }}
+        buttonStyle={styles.cardBtn}
         title={"R$ " + game.price.toString()}
         onPress={addToCart}
       />
@@ -52,9 +49,27 @@ function GameCard(props) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    paddingTop: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+    paddingBottom: 0,
+    borderRadius: 16,
+    backgroundColor: "#F6F6F6",
+  },
   gameImg: {
-    width: 200,
-    height: 100,
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+  },
+  cardBtn: {
+    borderRadius: 0,
+    marginTop: 40,
+    marginLeft: 0,
+    marginRight: 0,
+    marginBottom: 0,
+    backgroundColor: "#4CC5D2",
+    borderBottomLeftRadius: 16,
+    borderBottomRightRadius: 16,
   },
 });
 
