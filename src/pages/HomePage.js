@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Button } from "react-native";
 
+import { useCart } from "../context/CartContext";
+
 import games from "../utils/products";
 
 import GameCard from "../components/GameCard";
@@ -8,6 +10,8 @@ import GameCard from "../components/GameCard";
 // import CartIcon from "../assets/cart.svg";
 
 function pages({ navigation }) {
+  const { items, setItems } = useCart();
+
   return (
     <View style={styles.container}>
       <View style={styles.appBar}>
@@ -20,6 +24,8 @@ function pages({ navigation }) {
           <GameCard key={game.id} game={game} />
         ))}
       </View>
+
+      <Text>items: {items}</Text>
     </View>
   );
 }
