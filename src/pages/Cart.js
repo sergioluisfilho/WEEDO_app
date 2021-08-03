@@ -6,7 +6,7 @@ function Cart() {
   console.log(items);
   return (
     <View>
-      <Text>Cart: {items.length}</Text>
+      <Text>{items.length} itens</Text>
     </View>
   );
 }
