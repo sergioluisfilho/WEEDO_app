@@ -12,6 +12,13 @@ function Cart({ navigation }) {
     navigation.navigate("HomePage");
   }
 
+  if (items.length == 0)
+    return (
+      <View>
+        <Text>Carrinho vazio</Text>
+      </View>
+    );
+
   return (
     <View>
       <Text>{items.length} itens</Text>
