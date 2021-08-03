@@ -13,7 +13,10 @@ import axios from "axios";
 import { useCart } from "../context/CartContext";
 
 function Cart({ navigation }) {
-  const [CEP, setCEP] = React.useState(null);
+  const [CEP, setCEP] = useState(null);
+  const [shippingPrice, setShippingPrice] = useState(null);
+  const [shippingData, setShippingData] = useState(null);
+  const [showCepModal, setShowCepModal] = useState(false);
 
   const { items, setItems } = useCart();
   //console.log(items);
@@ -23,6 +26,15 @@ function Cart({ navigation }) {
       .get(`https://viacep.com.br/ws/${CEP}/json`)
       .then((response) => {
         console.log(response.data);
+        if (response.data.uf == "PE") {
+          setShippingPrice(100);
+          setShippingData(response.data);
+          setShowCepModal(true);
+        } else {
+          setShippingPrice(200);
+          setShowCepModal(true);
+          setShippingData(response.data);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -55,6 +67,15 @@ function Cart({ navigation }) {
         />
         <Button title="Calcular" onPress={getAddressData} />
       </View>
+
+      {showCepModal ? (
+        <View>
+          <Text>{shippingData.logradouro}</Text>
+          <Text>Valor do frete: R${shippingPrice}</Text>
+        </View>
+      ) : (
+        <View />
+      )}
 
       <Button title="Finalizar Compra" onPress={checkout} />
     </View>
