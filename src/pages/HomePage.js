@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+  ScrollView,
+} from "react-native";
 
 import games from "../utils/products";
 
@@ -7,7 +14,7 @@ import GameCard from "../components/GameCard";
 
 // import CartIcon from "../assets/cart.svg";
 
-function pages({ navigation }) {
+function HomePage({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.appBar}>
@@ -15,10 +22,12 @@ function pages({ navigation }) {
         <Button title="Carrinho" onPress={() => navigation.navigate("Cart")} />
       </View>
 
-      <View>
-        {games.map((game) => (
-          <GameCard key={game.id} game={game} />
-        ))}
+      <View style={styles.body}>
+        <ScrollView>
+          {games.map((game) => (
+            <GameCard key={game.id} game={game} />
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
@@ -42,4 +51,4 @@ const styles = StyleSheet.create({
   body: {},
 });
 
-export default pages;
+export default HomePage;
