@@ -5,7 +5,7 @@ import { useCart } from "../context/CartContext";
 
 function GameCard(props) {
   function addToCart() {
-    setItems(items + 1);
+    setItems([...items, props.game]);
     Alert.alert("adicionado ao carrinho");
   }
 
