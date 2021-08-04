@@ -40,17 +40,17 @@ function GameCard(props) {
       ></Card.Image>
 
       <View style={styles.gameInfoContainer}>
-        <Card.Title>{game.name}</Card.Title>
+        <Text style={styles.gameTitle}>{game.name}</Text>
         <Text style={styles.cardInfo}>Plataforma: {game.platform}</Text>
         <Text style={styles.cardInfo}>Categoria/Gênero: </Text>
         <View style={styles.categoriesContainer}>
           {game.categories.map((category) => (
-            <Text
-              style={styles.cardInfo}
+            <View
               key={game.categories.indexOf(category)}
+              style={styles.categoryInfoContainer}
             >
-              {category}{" "}
-            </Text>
+              <Text style={styles.categoryInfo}>{category} </Text>
+            </View>
           ))}
         </View>
       </View>
@@ -87,11 +87,35 @@ const styles = StyleSheet.create({
     width: 160,
     height: 78,
   },
+  gameTitle: {
+    marginLeft: 8,
+    marginTop: 10,
+    marginBottom: 8,
+    fontSize: 14,
+    fontWeight: "bold",
+    color: "#303030",
+  },
   gameInfoContainer: {
     height: 136,
   },
   categoriesContainer: {
     flexDirection: "row",
+    justifyContent: "space-evenly",
+    marginTop: 3,
+  },
+  categoryInfoContainer: {
+    backgroundColor: "#DBDBDB",
+
+    borderRadius: 6,
+  },
+  categoryInfo: {
+    fontSize: 9,
+    paddingBottom: 2,
+    paddingTop: 2,
+    paddingLeft: 6,
+    paddingRight: 6,
+    fontSize: 9,
+    color: "#303030",
   },
   cardBtn: {
     borderRadius: 0,
@@ -103,7 +127,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 16,
     height: 37,
   },
-  cardInfo: { paddingBottom: 2, fontSize: 9 },
+  cardInfo: { paddingBottom: 2, fontSize: 9, color: "#303030", marginLeft: 9 },
 });
 
 export default GameCard;
