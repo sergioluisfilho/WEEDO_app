@@ -7,7 +7,7 @@ import {
   Alert,
   TouchableOpacity,
 } from "react-native";
-import { Card, ListItem, Button, Icon } from "react-native-elements";
+import { Card, Button } from "react-native-elements";
 
 import Cart from "../assets/cart.png";
 
@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
     color: "#303030",
+    alignItems: "center",
   },
   gameInfoContainer: {
     height: 136,

@@ -93,7 +93,20 @@ function Cart({ navigation }) {
       ) : (
         <View />
       )}
-      <Text>{items.length} itens</Text>
+      <View style={styles.purchaseSummary}>
+        {showCepModal && (
+          <View style={styles.purchaseSummaryLine}>
+            <Text style={styles.purchaseSummaryText}>frete</Text>
+            <Text style={styles.purchaseSummaryTextBold}>
+              R${shippingPrice}
+            </Text>
+          </View>
+        )}
+        <View style={styles.purchaseSummaryLine}>
+          <Text style={styles.purchaseSummaryText}>{items.length} itens</Text>
+          <Text style={styles.cartAmount}>R$598,00</Text>
+        </View>
+      </View>
       <Button title="Finalizar Compra" onPress={checkout} />
     </View>
   );
@@ -101,6 +114,7 @@ function Cart({ navigation }) {
 
 const styles = StyleSheet.create({
   cartContainer: {
+    flex: 1,
     backgroundColor: "#fff",
   },
   shippingContainer: {
@@ -172,6 +186,31 @@ const styles = StyleSheet.create({
   shippingValue: {
     fontWeight: "bold",
     fontSize: 16,
+  },
+  purchaseSummary: {
+    backgroundColor: "#fff",
+    flexDirection: "column",
+    marginLeft: "7%",
+    marginRight: "7%",
+    padding: 16,
+  },
+  purchaseSummaryLine: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  purchaseSummaryText: {
+    fontSize: 16,
+    color: "#707070",
+  },
+  purchaseSummaryTextBold: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "black",
+  },
+  cartAmount: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "black",
   },
 });
 
