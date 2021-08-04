@@ -1,52 +1,20 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Button,
-  ScrollView,
-  TouchableOpacity,
-  FlatList,
-} from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 
 import games from "../utils/products";
 
+import HeaderHomePage from "../components/HeaderHomePage";
 import GameCard from "../components/GameCard";
-
-import Logo from "../assets/it.png";
-import Cart from "../assets/cart.png";
 
 function HomePage({ navigation }) {
   const [numCols, setColumnNo] = useState(2);
 
   return (
     <View style={styles.container}>
-      <View style={styles.appBar}>
-        <Image source={Logo} />
-        <TouchableOpacity
-          title="Carrinho"
-          onPress={() => navigation.navigate("Cart")}
-        >
-          <Image source={Cart} />
-        </TouchableOpacity>
-      </View>
-
-      <View>
-        <Text style={styles.title}>Games</Text>
-        <Text style={styles.titleBold}>Populares</Text>
-      </View>
-
-      {/* <View style={styles.body}>
-        <ScrollView>
-          {games.map((game) => (
-            <GameCard key={game.id} game={game} />
-          ))}
-        </ScrollView>
-      </View> */}
       <FlatList
         columnWrapperStyle={{ justifyContent: "space-evenly" }}
         data={games}
+        ListHeaderComponent={<HeaderHomePage navigation={navigation} />}
         numColumns={numCols}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => {
@@ -74,16 +42,22 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginRight: 10,
   },
+  titleContainer: {
+    marginTop: 33,
+    marginBottom: 39,
+  },
 
   title: {
-    marginLeft: 15,
-    marginRight: 15,
+    marginLeft: 12,
+    marginRight: 12,
+    fontSize: 32,
   },
 
   titleBold: {
-    marginLeft: 15,
-    marginRight: 15,
+    marginLeft: 12,
+    marginRight: 12,
     fontWeight: "bold",
+    fontSize: 32,
   },
 
   body: {},
