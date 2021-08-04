@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -18,6 +18,8 @@ import Logo from "../assets/it.png";
 import Cart from "../assets/cart.png";
 
 function HomePage({ navigation }) {
+  const [numCols, setColumnNo] = useState(2);
+
   return (
     <View style={styles.container}>
       <View style={styles.appBar}>
@@ -35,13 +37,22 @@ function HomePage({ navigation }) {
         <Text style={styles.titleBold}>Populares</Text>
       </View>
 
-      <View style={styles.body}>
+      {/* <View style={styles.body}>
         <ScrollView>
           {games.map((game) => (
             <GameCard key={game.id} game={game} />
           ))}
         </ScrollView>
-      </View>
+      </View> */}
+      <FlatList
+        columnWrapperStyle={{ justifyContent: "space-evenly" }}
+        data={games}
+        numColumns={numCols}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => {
+          return <GameCard game={item} />;
+        }}
+      />
     </View>
   );
 }
@@ -75,9 +86,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
-  body: {
-    flexDirection: "column",
-  },
+  body: {},
+  gameCard: {},
 });
 
 export default HomePage;
