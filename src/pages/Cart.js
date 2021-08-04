@@ -52,12 +52,12 @@ function Cart({ navigation }) {
     navigation.navigate("HomePage");
   }
 
-  if (items.length == 0)
-    return (
-      <View>
-        <Text>Carrinho vazio</Text>
-      </View>
-    );
+  // if (items.length == 0)
+  //   return (
+  //     <View>
+  //       <Text>Carrinho vazio</Text>
+  //     </View>
+  //   );
 
   return (
     <View style={styles.cartContainer}>
