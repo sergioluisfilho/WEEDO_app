@@ -26,7 +26,16 @@ function GameCard(props) {
   const game = props.game;
 
   function addToCart() {
-    setItems([...items, props.game]);
+    console.log(items.length);
+    if (items.includes(game)) {
+      console.log("já existe");
+    } else {
+      console.log("adicionado");
+      game["quantity"] = 1;
+
+      setItems([...items, game]);
+    }
+
     Alert.alert("adicionado ao carrinho");
   }
 
