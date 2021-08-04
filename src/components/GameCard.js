@@ -38,16 +38,21 @@ function GameCard(props) {
         style={styles.gameImg}
         source={imageMap[game.imageName]}
       ></Card.Image>
-      <Card.Title>{game.name}</Card.Title>
 
-      <Text style={styles.cardInfo}>Plataforma: {game.platform}</Text>
-      <Text style={styles.cardInfo}>Categoria/Gênero: </Text>
-      <View style={styles.categoriesContainer}>
-        {game.categories.map((category) => (
-          <Text style={styles.cardInfo} key={game.categories.indexOf(category)}>
-            {category}{" "}
-          </Text>
-        ))}
+      <View style={styles.gameInfoContainer}>
+        <Card.Title>{game.name}</Card.Title>
+        <Text style={styles.cardInfo}>Plataforma: {game.platform}</Text>
+        <Text style={styles.cardInfo}>Categoria/Gênero: </Text>
+        <View style={styles.categoriesContainer}>
+          {game.categories.map((category) => (
+            <Text
+              style={styles.cardInfo}
+              key={game.categories.indexOf(category)}
+            >
+              {category}{" "}
+            </Text>
+          ))}
+        </View>
       </View>
       <View>
         <Button
@@ -82,6 +87,9 @@ const styles = StyleSheet.create({
     width: 160,
     height: 78,
   },
+  gameInfoContainer: {
+    height: 136,
+  },
   categoriesContainer: {
     flexDirection: "row",
   },
@@ -93,6 +101,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#4CC5D2",
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
+    height: 37,
   },
   cardInfo: { paddingBottom: 2, fontSize: 9 },
 });
