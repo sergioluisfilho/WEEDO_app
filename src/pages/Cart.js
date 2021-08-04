@@ -7,10 +7,13 @@ import {
   Button,
   Alert,
   TextInput,
+  TouchableOpacity,
 } from "react-native";
 import axios from "axios";
 
 import { useCart } from "../context/CartContext";
+
+import MapMark from "../assets/map-mark.png";
 
 function Cart({ navigation }) {
   const [CEP, setCEP] = useState(null);
@@ -56,16 +59,20 @@ function Cart({ navigation }) {
 
   return (
     <View>
-      <Text>{items.length} itens</Text>
-      <View style={styles.cepContainer}>
-        <TextInput
-          placeholder="Seu CEP"
-          keyboardType="numeric"
-          style={styles.input}
-          onChangeText={setCEP}
-          value={CEP}
-        />
-        <Button title="Calcular" onPress={getAddressData} />
+      <View style={styles.shippingContainer}>
+        <Text style={styles.shippingTitle}>Calcule o frete</Text>
+        <View style={styles.cepContainer}>
+          <TextInput
+            placeholder="Seu CEP"
+            keyboardType="numeric"
+            style={styles.input}
+            onChangeText={setCEP}
+            value={CEP}
+          />
+          <TouchableOpacity style={styles.MapMark} onPress={getAddressData}>
+            <Image source={MapMark} />
+          </TouchableOpacity>
+        </View>
       </View>
 
       {showCepModal ? (
@@ -77,21 +84,48 @@ function Cart({ navigation }) {
         <View />
       )}
 
+      <Text>{items.length} itens</Text>
+
       <Button title="Finalizar Compra" onPress={checkout} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  shippingContainer: {
+    justifyContent: "space-evenly",
+    flexDirection: "column",
+  },
+  shippingTitle: {
+    justifyContent: "space-evenly",
+    marginLeft: "10%",
+    fontSize: 16,
+    margin: 8,
+    color: "#707070",
+  },
   cepContainer: {
     justifyContent: "space-evenly",
     flexDirection: "row",
+    alignItems: "center",
   },
   input: {
-    height: 40,
-    margin: 12,
     borderWidth: 1,
-    padding: 10,
+    padding: 15,
+    width: "70%",
+    borderRadius: 25,
+    height: 52,
+    borderColor: "#4CC5D2",
+    color: "#707070",
+    fontSize: 16,
+  },
+  MapMark: {
+    backgroundColor: "#4CC5D2",
+    padding: 15,
+    borderRadius: 25,
+    width: 44,
+    height: 44,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

@@ -47,7 +47,7 @@ function GameCard(props) {
           <Text key={game.categories.indexOf(category)}>{category} </Text>
         ))}
       </Text>
-      <View style={{ flexDirection: "column", justifyContent: "flex-end" }}>
+      <View>
         <Button
           icon={<Image source={Cart} />}
           buttonStyle={styles.cardBtn}
@@ -55,10 +55,6 @@ function GameCard(props) {
           onPress={addToCart}
         />
       </View>
-      {/* <TouchableOpacity style={styles.cardBtn} onPress={addToCart}>
-        <Image source={Cart} />
-        <Text>{" R$ " + game.price.toString()}</Text>
-      </TouchableOpacity> */}
     </View>
   );
 }
