@@ -40,13 +40,15 @@ function GameCard(props) {
       ></Card.Image>
       <Card.Title>{game.name}</Card.Title>
 
-      <Text style={{ paddingBottom: 10 }}>Plataforma: {game.platform}</Text>
-      <Text style={{ paddingBottom: 10 }}>
-        Categoria/Gênero:{" "}
+      <Text style={styles.cardInfo}>Plataforma: {game.platform}</Text>
+      <Text style={styles.cardInfo}>Categoria/Gênero: </Text>
+      <View style={styles.categoriesContainer}>
         {game.categories.map((category) => (
-          <Text key={game.categories.indexOf(category)}>{category} </Text>
+          <Text style={styles.cardInfo} key={game.categories.indexOf(category)}>
+            {category}{" "}
+          </Text>
         ))}
-      </Text>
+      </View>
       <View>
         <Button
           icon={<Image source={Cart} />}
@@ -71,14 +73,17 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderRadius: 16,
     backgroundColor: "#F6F6F6",
-    maxWidth: 150,
-    maxHeight: 300,
+    width: 160,
+    height: 251,
   },
   gameImg: {
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
-    maxWidth: 150,
+    width: 160,
     height: 78,
+  },
+  categoriesContainer: {
+    flexDirection: "row",
   },
   cardBtn: {
     borderRadius: 0,
@@ -89,6 +94,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
   },
+  cardInfo: { paddingBottom: 2, fontSize: 9 },
 });
 
 export default GameCard;
