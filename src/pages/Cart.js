@@ -13,6 +13,8 @@ import axios from "axios";
 
 import { useCart } from "../context/CartContext";
 
+import HeaderCart from "../components/HeaderCart";
+
 import MapMark from "../assets/map-mark.png";
 
 function Cart({ navigation }) {
@@ -59,6 +61,7 @@ function Cart({ navigation }) {
 
   return (
     <View style={styles.cartContainer}>
+      <HeaderCart navigation={navigation} />
       <View style={styles.shippingContainer}>
         <Text style={styles.shippingTitle}>Calcule o frete</Text>
         <View style={styles.cepContainer}>
@@ -116,6 +119,10 @@ const styles = StyleSheet.create({
   cartContainer: {
     flex: 1,
     backgroundColor: "#fff",
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingBottom: 20,
+    paddingTop: 20,
   },
   shippingContainer: {
     justifyContent: "space-evenly",
