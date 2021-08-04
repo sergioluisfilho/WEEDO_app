@@ -7,6 +7,7 @@ import {
   Button,
   ScrollView,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 
 import games from "../utils/products";
@@ -74,7 +75,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
-  body: {},
+  body: {
+    flexDirection: "column",
+  },
 });
 
 export default HomePage;

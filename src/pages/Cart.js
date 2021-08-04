@@ -58,7 +58,7 @@ function Cart({ navigation }) {
     );
 
   return (
-    <View>
+    <View style={styles.cartContainer}>
       <View style={styles.shippingContainer}>
         <Text style={styles.shippingTitle}>Calcule o frete</Text>
         <View style={styles.cepContainer}>
@@ -77,21 +77,32 @@ function Cart({ navigation }) {
 
       {showCepModal ? (
         <View>
-          <Text>{shippingData.logradouro}</Text>
-          <Text>Valor do frete: R${shippingPrice}</Text>
+          <View style={styles.triangleContainer}>
+            <View style={styles.triangle}></View>
+          </View>
+          <View style={styles.addressModal}>
+            <Text style={styles.address}>
+              {shippingData.logradouro}, {shippingData.bairro}:{" "}
+              {shippingData.localidade}
+            </Text>
+            <Text style={styles.shippingValue}>
+              Valor do frete: R${shippingPrice}
+            </Text>
+          </View>
         </View>
       ) : (
         <View />
       )}
-
       <Text>{items.length} itens</Text>
-
       <Button title="Finalizar Compra" onPress={checkout} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  cartContainer: {
+    backgroundColor: "#fff",
+  },
   shippingContainer: {
     justifyContent: "space-evenly",
     flexDirection: "column",
@@ -126,6 +137,41 @@ const styles = StyleSheet.create({
     height: 44,
     justifyContent: "center",
     alignItems: "center",
+  },
+  triangleContainer: {
+    alignItems: "flex-end",
+    width: "90%",
+  },
+  triangle: {
+    width: 0,
+    height: 0,
+    backgroundColor: "transparent",
+    borderStyle: "solid",
+    borderTopWidth: 0,
+    borderRightWidth: 10,
+    borderBottomWidth: 18,
+    borderLeftWidth: 10,
+    borderTopColor: "transparent",
+    borderRightColor: "transparent",
+    borderBottomColor: "#DBDBDB",
+    borderLeftColor: "transparent",
+    justifyContent: "flex-end",
+  },
+  addressModal: {
+    backgroundColor: "#DBDBDB",
+    marginLeft: "7%",
+    marginRight: "7%",
+    alignItems: "center",
+    borderRadius: 6,
+    padding: 16,
+  },
+  address: {
+    fontSize: 14,
+    marginBottom: 16,
+  },
+  shippingValue: {
+    fontWeight: "bold",
+    fontSize: 16,
   },
 });
 
