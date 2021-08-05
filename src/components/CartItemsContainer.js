@@ -7,19 +7,21 @@ import {
   Image,
   Alert,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 
 import { useCart } from "../context/CartContext";
 
-import Plus from "../assets/plus.png";
-import Less from "../assets/less.png";
+import CartItem from "./CartItem";
 
 function CartItemsContainer() {
   return (
-    <View>
-      <Text>Container</Text>
-    </View>
+    <ScrollView>
+      <CartItem />
+    </ScrollView>
   );
 }
 
 export default CartItemsContainer;
+
+const styles = StyleSheet.create({});
