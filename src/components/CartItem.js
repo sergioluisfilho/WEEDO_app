@@ -23,18 +23,25 @@ var imageMap = {
   "celeste.png": require("../assets/images/celeste.png"),
 };
 
-function CartItem() {
+function CartItem(props) {
+  let game = props.game;
   return (
     <View style={styles.container}>
       <View style={styles.imgAndInfoContainer}>
-        <Image style={styles.gameImg} source={imageMap["zelda.png"]} />
+        <Image style={styles.gameImg} source={imageMap[game.imageName]} />
         <View style={styles.InfoContainer}>
-          <Text>Game Name</Text>
-          <Text>Preço</Text>
+          <Text>{game.name}</Text>
+          <Text>R${game.price}</Text>
         </View>
       </View>
-      <View>
-        <Text>Contador</Text>
+      <View style={styles.quantityContainer}>
+        <TouchableOpacity style={styles.incrementBtn}>
+          <Text>+</Text>
+        </TouchableOpacity>
+        <Text>{game.quantity}</Text>
+        <TouchableOpacity style={styles.incrementBtn}>
+          <Text>-</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -49,15 +56,26 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginLeft: 12,
     marginRight: 12,
+    marginBottom: 12,
   },
   imgAndInfoContainer: {
     flexDirection: "row",
     alignItems: "center",
+    maxWidth: "80%",
   },
-  InfoContainer: {},
+  InfoContainer: {
+    marginLeft: 10,
+    maxWidth: 150,
+  },
   gameImg: {
     borderRadius: 16,
     width: 110,
     height: 110,
   },
+  quantityContainer: {
+    backgroundColor: "#DBDBDB",
+    borderRadius: 6,
+    alignItems: "center",
+  },
+  incrementBtn: { width: 22, height: 22, alignItems: "center" },
 });

@@ -15,10 +15,15 @@ import { useCart } from "../context/CartContext";
 import CartItem from "./CartItem";
 
 function CartItemsContainer() {
+  const { items } = useCart();
+
+  if (items.length === 0) return <Text>Carrinho Vazio</Text>;
+
   return (
-    <ScrollView>
-      <CartItem />
-    </ScrollView>
+    <>
+      {items.length > 0 &&
+        items.map((item) => <CartItem key={item.id} game={item} />)}
+    </>
   );
 }
 

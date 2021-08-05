@@ -8,6 +8,7 @@ import {
   Alert,
   TextInput,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import axios from "axios";
 
@@ -61,7 +62,7 @@ function Cart({ navigation }) {
   //   );
 
   return (
-    <View style={styles.cartContainer}>
+    <ScrollView style={styles.cartContainer}>
       <HeaderCart navigation={navigation} />
       <CartItemsContainer />
       <View style={styles.shippingContainer}>
@@ -113,7 +114,7 @@ function Cart({ navigation }) {
         </View>
       </View>
       <Button title="Finalizar Compra" onPress={checkout} />
-    </View>
+    </ScrollView>
   );
 }
 
