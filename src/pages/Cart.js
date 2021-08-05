@@ -23,7 +23,7 @@ function Cart({ navigation }) {
   const [shippingData, setShippingData] = useState(null);
   const [showCepModal, setShowCepModal] = useState(false);
 
-  const { items, setItems } = useCart();
+  const { items, setItems, totalValue } = useCart();
   //console.log(items);
 
   function getAddressData() {
@@ -107,7 +107,7 @@ function Cart({ navigation }) {
         )}
         <View style={styles.purchaseSummaryLine}>
           <Text style={styles.purchaseSummaryText}>{items.length} itens</Text>
-          <Text style={styles.cartAmount}>R$598,00</Text>
+          <Text style={styles.cartAmount}>R${totalValue}</Text>
         </View>
       </View>
       <Button title="Finalizar Compra" onPress={checkout} />

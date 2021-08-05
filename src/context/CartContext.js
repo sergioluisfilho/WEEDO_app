@@ -4,15 +4,26 @@ const CartContext = createContext();
 
 export default function CartProvider({ children }) {
   const [items, setItems] = useState([]);
+  const [totalValue, setTotalValue] = useState(0);
+
+  function calculeAmount() {
+    var total = items.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+    setTotalValue(total);
+  }
 
   useEffect(() => {
-    console.log(items);
+    //console.log(items);
+    calculeAmount();
   }, [items]);
   return (
     <CartContext.Provider
       value={{
         items,
         setItems,
+        totalValue,
       }}
     >
       {children}
@@ -21,6 +32,6 @@ export default function CartProvider({ children }) {
 }
 export function useCart() {
   const context = useContext(CartContext);
-  const { items, setItems } = context;
-  return { items, setItems };
+  const { items, setItems, totalValue } = context;
+  return { items, setItems, totalValue };
 }
