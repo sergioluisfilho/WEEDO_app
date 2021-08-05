@@ -14,6 +14,7 @@ import axios from "axios";
 import { useCart } from "../context/CartContext";
 
 import HeaderCart from "../components/HeaderCart";
+import CartItemsContainer from "../components/CartItemsContainer";
 
 import MapMark from "../assets/map-mark.png";
 
@@ -23,7 +24,7 @@ function Cart({ navigation }) {
   const [shippingData, setShippingData] = useState(null);
   const [showCepModal, setShowCepModal] = useState(false);
 
-  const { items, setItems, totalValue } = useCart();
+  const { items, setItems, totalValue, itemsQuantity } = useCart();
   //console.log(items);
 
   function getAddressData() {
@@ -62,6 +63,7 @@ function Cart({ navigation }) {
   return (
     <View style={styles.cartContainer}>
       <HeaderCart navigation={navigation} />
+      <CartItemsContainer />
       <View style={styles.shippingContainer}>
         <Text style={styles.shippingTitle}>Calcule o frete</Text>
         <View style={styles.cepContainer}>
@@ -106,7 +108,7 @@ function Cart({ navigation }) {
           </View>
         )}
         <View style={styles.purchaseSummaryLine}>
-          <Text style={styles.purchaseSummaryText}>{items.length} itens</Text>
+          <Text style={styles.purchaseSummaryText}>{itemsQuantity} itens</Text>
           <Text style={styles.cartAmount}>R${totalValue}</Text>
         </View>
       </View>

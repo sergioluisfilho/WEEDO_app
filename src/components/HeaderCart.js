@@ -7,7 +7,10 @@ function HeaderCart({ navigation }) {
   return (
     <>
       <View style={styles.appBar}>
-        <TouchableOpacity onPress={() => navigation.navigate("HomePage")}>
+        <TouchableOpacity
+          style={styles.arrowButton}
+          onPress={() => navigation.navigate("HomePage")}
+        >
           <Image source={Arrow} />
         </TouchableOpacity>
       </View>
@@ -25,11 +28,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginLeft: 10,
-    marginRight: 10,
+  },
+  arrowButton: {
+    flex: 1,
+    padding: 10,
   },
   titleContainer: {
-    marginTop: 33,
+    marginTop: 23,
     marginBottom: 39,
   },
 

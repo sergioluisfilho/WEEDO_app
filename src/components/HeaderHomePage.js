@@ -10,6 +10,7 @@ function HeaderHomePage({ navigation }) {
       <View style={styles.appBar}>
         <Image source={Logo} />
         <TouchableOpacity
+          style={styles.cartButton}
           title="Carrinho"
           onPress={() => navigation.navigate("Cart")}
         >
@@ -32,6 +33,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginLeft: 10,
     marginRight: 10,
+  },
+  cartButton: {
+    padding: 12,
   },
   titleContainer: {
     marginTop: 33,
