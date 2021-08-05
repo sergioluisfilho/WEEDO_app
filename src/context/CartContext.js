@@ -8,10 +8,9 @@ export default function CartProvider({ children }) {
   const [itemsQuantity, setItemsQuantity] = useState(0);
 
   function calculeAmount() {
-    var total = items.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
+    var total = items.reduce((total, item) => {
+      return item.price * item.quantity + total;
+    }, 0);
     setTotalValue(total);
   }
 
@@ -20,7 +19,7 @@ export default function CartProvider({ children }) {
     setItemsQuantity(total);
   }
   useEffect(() => {
-    //console.log(items);
+    console.log(items);
     calculeAmount();
     calculateItemsQuantity();
   }, [items]);

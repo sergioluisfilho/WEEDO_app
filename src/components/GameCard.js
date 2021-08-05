@@ -30,10 +30,9 @@ function GameCard(props) {
       let cart = items.map((item) => {
         if (item === game) {
           item.quantity = item.quantity + 1;
-          return item;
-        }
+          
+        } return item;
       });
-
       setItems(cart);
     } else {
       game["quantity"] = 1;
