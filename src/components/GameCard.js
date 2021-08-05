@@ -26,11 +26,16 @@ function GameCard(props) {
   const game = props.game;
 
   function addToCart() {
-    console.log(items.length);
     if (items.includes(game)) {
-      console.log("já existe");
+      let cart = items.map((item) => {
+        if (item === game) {
+          item.quantity = item.quantity + 1;
+          return item;
+        }
+      });
+
+      setItems(cart);
     } else {
-      console.log("adicionado");
       game["quantity"] = 1;
 
       setItems([...items, game]);
