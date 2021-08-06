@@ -19,18 +19,8 @@ export default function CartProvider({ children }) {
     setItemsQuantity(total);
   }
 
-  // function quantityMoreThanZero(value) {
-  //   return value.quantity > 0;
-  // }
-
-  // function verifyIfProductHasZeroQuantity() {
-  //   var filtered = items.filter(quantityMoreThanZero);
-  //   console.log(filtered);
-  // }
-
   useEffect(() => {
     //console.log(items);
-    // verifyIfProductHasZeroQuantity();
     calculeAmount();
     calculateItemsQuantity();
   }, [items]);
