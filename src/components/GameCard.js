@@ -28,10 +28,10 @@ function GameCard(props) {
   function addToCart() {
     if (items.includes(game)) {
       let cart = items.map((item) => {
-        if (item === game) {
+        if (item.id === game.id) {
           item.quantity = item.quantity + 1;
-          
-        } return item;
+        }
+        return item;
       });
       setItems(cart);
     } else {

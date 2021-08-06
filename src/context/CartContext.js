@@ -18,8 +18,19 @@ export default function CartProvider({ children }) {
     var total = items.reduce((total, item) => total + 1 * item.quantity, 0);
     setItemsQuantity(total);
   }
+
+  // function quantityMoreThanZero(value) {
+  //   return value.quantity > 0;
+  // }
+
+  // function verifyIfProductHasZeroQuantity() {
+  //   var filtered = items.filter(quantityMoreThanZero);
+  //   console.log(filtered);
+  // }
+
   useEffect(() => {
-    console.log(items);
+    //console.log(items);
+    // verifyIfProductHasZeroQuantity();
     calculeAmount();
     calculateItemsQuantity();
   }, [items]);
