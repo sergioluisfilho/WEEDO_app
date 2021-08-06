@@ -37,6 +37,7 @@ export default function CartProvider({ children }) {
     var total = items.reduce((total, item) => total + 1 * item.quantity, 0);
     setItemsQuantity(total);
   }
+
   useEffect(() => {
     getData().then((data) => {
       if (data) {
@@ -46,8 +47,11 @@ export default function CartProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    calculeAmount();
     storeData(items);
+  }, [items]);
+
+  useEffect(() => {
+    calculeAmount();
     calculateItemsQuantity();
   }, [items]);
 
