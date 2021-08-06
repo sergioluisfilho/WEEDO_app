@@ -39,6 +39,7 @@ export default function CartProvider({ children }) {
   }
 
   useEffect(() => {
+    //AsyncStorage.clear();
     getData().then((data) => {
       if (data) {
         setItems(data);
