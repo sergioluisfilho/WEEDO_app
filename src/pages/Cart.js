@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Modal,
-  Pressable
+  Pressable,
 } from "react-native";
 import axios from "axios";
 
@@ -55,13 +55,6 @@ function Cart({ navigation }) {
     setItems([]);
     navigation.navigate("HomePage");
   }
-
-  // if (items.length == 0)
-  //   return (
-  //     <View>
-  //       <Text>Carrinho vazio</Text>
-  //     </View>
-  //   );
 
   return (
     <ScrollView style={styles.cartContainer}>
@@ -115,30 +108,48 @@ function Cart({ navigation }) {
           <Text style={styles.cartAmount}>R${totalValue}</Text>
         </View>
       </View>
-      <Button title="Finalizar Compra" onPress={()=>setModalVisible(!modalVisible)} />
+      <Button
+        title="Finalizar Compra"
+        onPress={() => setModalVisible(!modalVisible)}
+      />
       {/* modalcode */}
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Compra finalizada</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => {
-                checkout()
-                setModalVisible(!modalVisible)}}
-            >
-              <Text style={styles.textStyle}>Voltar para a Home</Text>
-            </Pressable>
+      <View style={styles.centeredView}>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <View style={styles.modalTitle}>
+                <Text style={styles.modalTitleText}>Compra</Text>
+                <Text style={styles.modalTitleBold}>finalizada</Text>
+              </View>
+              <Text style={styles.modalText}>
+                Sua Compra foi finalizada com sucesso
+              </Text>
+              <View style={styles.modalPurchaseResume}>
+                <Text style={styles.modalText}>Valor da compra: </Text>
+                <Text style={styles.modalText}>
+                  {shippingPrice + totalValue}
+                </Text>
+              </View>
+              <Pressable
+                style={[styles.button, styles.buttonClose]}
+                onPress={() => {
+                  checkout();
+                  setModalVisible(!modalVisible);
+                }}
+              >
+                <Text style={styles.textStyle}>Voltar para a Home</Text>
+              </Pressable>
+            </View>
           </View>
-        </View>
-      </Modal>
+        </Modal>
+      </View>
     </ScrollView>
   );
 }
@@ -252,9 +263,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22
+    backgroundColor: "rgba(0, 0, 0, 0.8)",
   },
   modalView: {
+    opacity: 1,
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
@@ -263,16 +275,16 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5
+    elevation: 5,
   },
   button: {
     borderRadius: 20,
     padding: 10,
-    elevation: 2
+    elevation: 2,
   },
   buttonOpen: {
     backgroundColor: "#F194FF",
@@ -283,12 +295,18 @@ const styles = StyleSheet.create({
   textStyle: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
   },
   modalText: {
     marginBottom: 15,
-    textAlign: "center"
-  }
+    textAlign: "center",
+  },
+  modalTitle: {},
+  modalTitleText: {},
+  modalTitleBold: {},
+  modalPurchaseResume: {},
+  modalPurchaseResumeText: {},
+  modalPurchaseResumeValue: {},
 });
 
 export default Cart;
