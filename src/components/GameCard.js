@@ -40,7 +40,7 @@ function GameCard(props) {
       setItems([...items, game]);
     }
 
-    Alert.alert("adicionado ao carrinho");
+    props.onAddCart(true);
   }
 
   const { items, setItems } = useCart();

@@ -24,6 +24,14 @@ function HomePage({ navigation }) {
   const [numCols, setColumnNo] = useState(2);
   const [modalVisible, setModalVisible] = useState(false);
 
+  useEffect(() => {
+    if (modalVisible == true) {
+      setTimeout(() => {
+        setModalVisible(false);
+      }, 1500);
+    }
+  }, [modalVisible]);
+
   return (
     <View style={styles.container}>
       <StatusBar
@@ -38,7 +46,9 @@ function HomePage({ navigation }) {
         numColumns={numCols}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => {
-          return <GameCard game={item} />;
+          return (
+            <GameCard onAddCart={(bool) => setModalVisible(bool)} game={item} />
+          );
         }}
       />
       <View>
@@ -47,7 +57,6 @@ function HomePage({ navigation }) {
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
             setModalVisible(!modalVisible);
           }}
         >
