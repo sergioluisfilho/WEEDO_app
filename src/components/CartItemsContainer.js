@@ -22,7 +22,9 @@ function CartItemsContainer() {
   return (
     <>
       {items.length > 0 &&
-        items.map((item) => <CartItem key={item.id} game={item} />)}
+        items.map((item) => {
+          if (item.quantity > 0) return <CartItem key={item.id} game={item} />;
+        })}
     </>
   );
 }
