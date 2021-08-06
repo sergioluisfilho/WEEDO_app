@@ -64,7 +64,7 @@ function Cart({ navigation }) {
         <Text style={styles.shippingTitle}>Calcule o frete</Text>
         <View style={styles.cepContainer}>
           <TextInput
-            placeholder="Seu CEP"
+            placeholder="seu cep"
             keyboardType="numeric"
             style={styles.input}
             onChangeText={setCEP}
@@ -115,7 +115,7 @@ function Cart({ navigation }) {
       {/* modalcode */}
       <View style={styles.centeredView}>
         <Modal
-          animationType="slide"
+          animationType="fade"
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
@@ -126,26 +126,30 @@ function Cart({ navigation }) {
             <View style={styles.modalView}>
               <View style={styles.modalTitle}>
                 <Text style={styles.modalTitleText}>Compra</Text>
-                <Text style={styles.modalTitleBold}>finalizada</Text>
+                <Text style={styles.modalTitleBold}>Finalizada</Text>
               </View>
-              <Text style={styles.modalText}>
-                Sua Compra foi finalizada com sucesso
+              <Text style={styles.modalSucessText}>
+                Sua Compra foi finalizada com sucesso!
               </Text>
               <View style={styles.modalPurchaseResume}>
-                <Text style={styles.modalText}>Valor da compra: </Text>
-                <Text style={styles.modalText}>
-                  {shippingPrice + totalValue}
+                <Text style={styles.modalPurchaseResumeText}>
+                  Valor da compra:{" "}
+                </Text>
+                <Text style={styles.modalPurchaseResumeValue}>
+                  R${shippingPrice + totalValue}
                 </Text>
               </View>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => {
-                  checkout();
-                  setModalVisible(!modalVisible);
-                }}
-              >
-                <Text style={styles.textStyle}>Voltar para a Home</Text>
-              </Pressable>
+              <View style={styles.buttonContainer}>
+                <Pressable
+                  style={[styles.button, styles.buttonClose]}
+                  onPress={() => {
+                    checkout();
+                    setModalVisible(!modalVisible);
+                  }}
+                >
+                  <Text style={styles.textStyle}>Voltar para a Home</Text>
+                </Pressable>
+              </View>
             </View>
           </View>
         </Modal>
@@ -271,7 +275,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
-    alignItems: "center",
+    alignItems: "flex-start",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -281,32 +285,47 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+  buttonContainer: {
+    flexDirection: "row",
+  },
   button: {
+    flex: 1,
     borderRadius: 20,
     padding: 10,
     elevation: 2,
+    borderRadius: 6,
+    height: 48,
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonOpen: {
-    backgroundColor: "#F194FF",
+    backgroundColor: "#4CC5D2",
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: "#4CC5D2",
   },
   textStyle: {
     color: "white",
-    fontWeight: "bold",
+
     textAlign: "center",
+    fontSize: 16,
   },
   modalText: {
     marginBottom: 15,
     textAlign: "center",
   },
-  modalTitle: {},
-  modalTitleText: {},
-  modalTitleBold: {},
-  modalPurchaseResume: {},
-  modalPurchaseResumeText: {},
-  modalPurchaseResumeValue: {},
+  modalTitle: { marginBottom: 34 },
+  modalTitleText: { fontSize: 32 },
+  modalTitleBold: { fontSize: 32, fontWeight: "bold" },
+  modalSucessText: { fontSize: 16 },
+  modalPurchaseResume: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 20,
+    marginBottom: 14,
+  },
+  modalPurchaseResumeText: { flex: 1, fontSize: 16, color: "#878787" },
+  modalPurchaseResumeValue: { fontSize: 20, fontWeight: "bold" },
 });
 
 export default Cart;

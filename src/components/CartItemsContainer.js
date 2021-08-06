@@ -14,10 +14,23 @@ import { useCart } from "../context/CartContext";
 
 import CartItem from "./CartItem";
 
+import EmptyCart from "../assets/empty-cart.png";
+
 function CartItemsContainer() {
   const { items } = useCart();
 
-  if (items.length === 0) return <Text>Carrinho Vazio</Text>;
+  if (items.length === 0)
+    return (
+      <Image
+        style={{
+          width: 130,
+          height: 130,
+          alignSelf: "center",
+          marginBottom: 40,
+        }}
+        source={EmptyCart}
+      />
+    );
 
   return (
     <>

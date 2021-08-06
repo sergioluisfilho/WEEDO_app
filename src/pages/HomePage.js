@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, View, FlatList } from "react-native";
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  Modal,
+  Pressable,
+  Alert,
+} from "react-native";
 
 import games from "../utils/products";
 
@@ -8,7 +15,7 @@ import GameCard from "../components/GameCard";
 
 function HomePage({ navigation }) {
   const [numCols, setColumnNo] = useState(2);
-
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.container}>
       <FlatList
