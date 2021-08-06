@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -6,7 +6,14 @@ import {
   Modal,
   Pressable,
   Alert,
+  Text,
+  TouchableOpacity,
+  StatusBar,
 } from "react-native";
+
+const statusBarStyle = "dark-content";
+
+import { useCart } from "../context/CartContext";
 
 import games from "../utils/products";
 
@@ -15,9 +22,14 @@ import GameCard from "../components/GameCard";
 
 function HomePage({ navigation }) {
   const [numCols, setColumnNo] = useState(2);
-  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <View style={styles.container}>
+      <StatusBar
+        animated={true}
+        backgroundColor="#61dafb"
+        barStyle={statusBarStyle}
+      />
       <FlatList
         columnWrapperStyle={{ justifyContent: "space-evenly" }}
         data={games}

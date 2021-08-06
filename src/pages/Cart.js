@@ -64,7 +64,7 @@ function Cart({ navigation }) {
         <Text style={styles.shippingTitle}>Calcule o frete</Text>
         <View style={styles.cepContainer}>
           <TextInput
-            placeholder="seu cep"
+            placeholder="seu CEP"
             keyboardType="numeric"
             style={styles.input}
             onChangeText={setCEP}
