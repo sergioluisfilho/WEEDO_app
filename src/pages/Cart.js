@@ -9,6 +9,8 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  Modal,
+  Pressable
 } from "react-native";
 import axios from "axios";
 
@@ -24,6 +26,7 @@ function Cart({ navigation }) {
   const [shippingPrice, setShippingPrice] = useState(null);
   const [shippingData, setShippingData] = useState(null);
   const [showCepModal, setShowCepModal] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const { items, setItems, totalValue, itemsQuantity } = useCart();
   //console.log(items);
@@ -50,7 +53,6 @@ function Cart({ navigation }) {
 
   function checkout() {
     setItems([]);
-    Alert.alert("Compra finalizada");
     navigation.navigate("HomePage");
   }
 
@@ -113,7 +115,30 @@ function Cart({ navigation }) {
           <Text style={styles.cartAmount}>R${totalValue}</Text>
         </View>
       </View>
-      <Button title="Finalizar Compra" onPress={checkout} />
+      <Button title="Finalizar Compra" onPress={()=>setModalVisible(!modalVisible)} />
+      {/* modalcode */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Compra finalizada</Text>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => {
+                checkout()
+                setModalVisible(!modalVisible)}}
+            >
+              <Text style={styles.textStyle}>Voltar para a Home</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </ScrollView>
   );
 }
@@ -222,6 +247,48 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "black",
   },
+  // modal css
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  }
 });
 
 export default Cart;
