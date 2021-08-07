@@ -28,6 +28,18 @@ export default function CartProvider({ children }) {
     }
   };
 
+  function verifyIfCartHasProductWithZeroQuantity() {
+    let cart = items;
+
+    cart.forEach((item, index) => {
+      if (item.quantity === 0) {
+        cart.splice(index, 1);
+      }
+    });
+
+    setItems(cart);
+  }
+
   function calculeAmount() {
     var total = items.reduce((total, item) => {
       return item.price * item.quantity + total;
@@ -70,9 +82,10 @@ export default function CartProvider({ children }) {
     calculateItemsQuantity();
   }, [items]);
 
-  // useEffect(() => {
-  //   console.log(items);
-  // }, [items]);
+  useEffect(() => {
+    verifyIfCartHasProductWithZeroQuantity();
+    console.log(items);
+  }, [items]);
 
   return (
     <CartContext.Provider
