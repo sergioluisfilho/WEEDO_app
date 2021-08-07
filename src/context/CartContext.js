@@ -28,6 +28,18 @@ export default function CartProvider({ children }) {
     }
   };
 
+  function calculateDiscount(item) {
+    let threeProducts = Math.floor(item.quantity / 3);
+
+    let amount = item.price * item.quantity;
+
+    let discountPerProduct = item.price * 0.25;
+
+    let totalDiscount = discountPerProduct * threeProducts * 3;
+
+    return amount - totalDiscount;
+  }
+
   function verifyIfCartHasProductWithZeroQuantity() {
     let cart = items;
 
@@ -42,7 +54,11 @@ export default function CartProvider({ children }) {
 
   function calculeAmount() {
     var total = items.reduce((total, item) => {
-      return item.price * item.quantity + total;
+      if (item.quantity < 3) {
+        return item.price * item.quantity + total;
+      } else {
+        return calculateDiscount(item) + total;
+      }
     }, 0);
     setTotalValue(total);
   }
@@ -84,7 +100,7 @@ export default function CartProvider({ children }) {
 
   useEffect(() => {
     verifyIfCartHasProductWithZeroQuantity();
-    console.log(items);
+    // console.log(items);
   }, [items]);
 
   return (

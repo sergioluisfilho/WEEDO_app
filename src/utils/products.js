@@ -4,7 +4,7 @@ const games = [
     name: "The Legend of Zelda: Link’s Awakening",
     platform: "Nintendo Switch",
     categories: ["Ação", "Aventura"],
-    price: 299.0,
+    price: 100,
     imageName: "zelda.png",
   },
   {
