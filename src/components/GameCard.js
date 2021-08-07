@@ -44,6 +44,14 @@ function GameCard(props) {
     props.onAddCart(true);
   }
 
+  function isFreeToPlay(game) {
+    if (game.price > 0) {
+      return `R$${game.price.toFixed(2).toString().replace(".", ",")}`;
+    } else {
+      return "Gratuito p/ Jogar";
+    }
+  }
+
   const { items, setItems } = useCart();
 
   return (
@@ -72,7 +80,7 @@ function GameCard(props) {
         <Button
           icon={<Image source={Cart} />}
           buttonStyle={styles.cardBtn}
-          title={" R$ " + game.price.toFixed(2).toString().replace(".", ",")}
+          title={isFreeToPlay(game)}
           onPress={addToCart}
         />
       </View>

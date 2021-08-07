@@ -4,7 +4,7 @@ const games = [
     name: "The Legend of Zelda: Link’s Awakening",
     platform: "Nintendo Switch",
     categories: ["Ação", "Aventura"],
-    price: 100,
+    price: 299,
     imageName: "zelda.png",
   },
   {
@@ -12,7 +12,7 @@ const games = [
     name: "Animal Crossing",
     platform: "PC",
     categories: ["Simulação"],
-    price: 350.0,
+    price: 350,
     imageName: "animalCrossing.png",
   },
   {

@@ -51,13 +51,23 @@ function CartItem(props) {
 
   let game = props.game;
 
+  function isFreeToPlay(game) {
+    if (game.price > 0) {
+      return (
+        <Text>R${game.price.toFixed(2).toString().replace(".", ",")}</Text>
+      );
+    } else {
+      return <Text>Gratuito p/ Jogar</Text>;
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.imgAndInfoContainer}>
         <Image style={styles.gameImg} source={imageMap[game.imageName]} />
         <View style={styles.InfoContainer}>
           <Text>{game.name}</Text>
-          <Text>R${game.price.toFixed(2).toString().replace(".", ",")}</Text>
+          {isFreeToPlay(game)}
         </View>
       </View>
       <View style={styles.quantityContainer}>
