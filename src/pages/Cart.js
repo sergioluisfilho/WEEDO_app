@@ -171,7 +171,7 @@ function Cart({ navigation }) {
             style={[
               styles.checkoutButtonContainer,
               styles.checkoutButtonTouchArea,
-              { opacity: 1 },
+              { opacity: canCheckout ? 1 : 0.6 },
             ]}
             onPress={() => canCheckout && setModalVisible(!modalVisible)}
           >
