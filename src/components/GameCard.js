@@ -72,7 +72,7 @@ function GameCard(props) {
         <Button
           icon={<Image source={Cart} />}
           buttonStyle={styles.cardBtn}
-          title={" R$ " + game.price.toString()}
+          title={" R$ " + game.price.toFixed(2).toString().replace(".", ",")}
           onPress={addToCart}
         />
       </View>

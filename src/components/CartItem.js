@@ -57,7 +57,7 @@ function CartItem(props) {
         <Image style={styles.gameImg} source={imageMap[game.imageName]} />
         <View style={styles.InfoContainer}>
           <Text>{game.name}</Text>
-          <Text>R${game.price}</Text>
+          <Text>R${game.price.toFixed(2).toString().replace(".", ",")}</Text>
         </View>
       </View>
       <View style={styles.quantityContainer}>

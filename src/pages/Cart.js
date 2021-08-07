@@ -9,6 +9,7 @@ import {
   ScrollView,
   Modal,
   Pressable,
+  Alert,
 } from "react-native";
 
 import axios from "axios";
@@ -28,9 +29,15 @@ function Cart({ navigation }) {
   const [shippingData, setShippingData] = useState(null);
   const [showCepModal, setShowCepModal] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [canCheckout, setCanCheckout] = useState(false);
 
-  const { items, setItems, totalValue, itemsQuantity } = useCart();
+  const {
+    items,
+    setItems,
+    totalValue,
+    itemsQuantity,
+    canCheckout,
+    setCanCheckout,
+  } = useCart();
 
   useEffect(() => {
     if (shippingPrice && items.length > 0) {
@@ -60,6 +67,7 @@ function Cart({ navigation }) {
       })
       .catch((error) => {
         console.log(error);
+        Alert.alert("CEP inválido");
       });
   }
 
@@ -101,7 +109,8 @@ function Cart({ navigation }) {
                   {shippingData.localidade}
                 </Text>
                 <Text style={styles.shippingValue}>
-                  Valor do frete: R${shippingPrice}
+                  valor do frete: R$
+                  {shippingPrice.toFixed(2).toString().replace(".", ",")}
                 </Text>
               </View>
             </View>
@@ -113,7 +122,7 @@ function Cart({ navigation }) {
               <View style={styles.purchaseSummaryLine}>
                 <Text style={styles.purchaseSummaryText}>frete</Text>
                 <Text style={styles.purchaseSummaryTextBold}>
-                  R${shippingPrice}
+                  R${shippingPrice.toFixed(2).toString().replace(".", ",")}
                 </Text>
               </View>
             )}
@@ -121,7 +130,9 @@ function Cart({ navigation }) {
               <Text style={styles.purchaseSummaryText}>
                 {itemsQuantity} itens
               </Text>
-              <Text style={styles.cartAmount}>R${totalValue}</Text>
+              <Text style={styles.cartAmount}>
+                R${totalValue.toFixed(2).toString().replace(".", ",")}
+              </Text>
             </View>
           </View>
           <View style={styles.centeredView}>
@@ -147,7 +158,11 @@ function Cart({ navigation }) {
                       Valor da compra:{" "}
                     </Text>
                     <Text style={styles.modalPurchaseResumeValue}>
-                      R${shippingPrice + totalValue}
+                      R$
+                      {(shippingPrice + totalValue)
+                        .toFixed(2)
+                        .toString()
+                        .replace(".", ",")}
                     </Text>
                   </View>
                   <View style={styles.buttonContainer}>
@@ -166,13 +181,9 @@ function Cart({ navigation }) {
             </Modal>
           </View>
         </View>
-        <View style={styles.checkoutButtonContainer}>
+        <View style={canCheckout ? { opacity: 1 } : { opacity: 0.6 }}>
           <TouchableOpacity
-            style={[
-              styles.checkoutButtonContainer,
-              styles.checkoutButtonTouchArea,
-              { opacity: canCheckout ? 1 : 0.6 },
-            ]}
+            style={styles.checkoutButtonTouchArea}
             onPress={() => canCheckout && setModalVisible(!modalVisible)}
           >
             <Text style={styles.CheckoutButtonText}>
@@ -363,6 +374,7 @@ const styles = StyleSheet.create({
     height: 80,
   },
   checkoutButtonTouchArea: {
+    height: 80,
     flexDirection: "row",
     alignItems: "center",
     marginLeft: "10%",

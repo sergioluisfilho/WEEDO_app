@@ -9,6 +9,7 @@ export default function CartProvider({ children }) {
   const [items, setItems] = useState([]);
   const [totalValue, setTotalValue] = useState(0);
   const [itemsQuantity, setItemsQuantity] = useState(0);
+  const [canCheckout, setCanCheckout] = useState(false);
 
   const getData = async () => {
     try {
@@ -110,6 +111,8 @@ export default function CartProvider({ children }) {
         setItems,
         totalValue,
         itemsQuantity,
+        canCheckout,
+        setCanCheckout,
       }}
     >
       {children}
@@ -118,6 +121,20 @@ export default function CartProvider({ children }) {
 }
 export function useCart() {
   const context = useContext(CartContext);
-  const { items, setItems, totalValue, itemsQuantity } = context;
-  return { items, setItems, totalValue, itemsQuantity };
+  const {
+    items,
+    setItems,
+    totalValue,
+    itemsQuantity,
+    canCheckout,
+    setCanCheckout,
+  } = context;
+  return {
+    items,
+    setItems,
+    totalValue,
+    itemsQuantity,
+    canCheckout,
+    setCanCheckout,
+  };
 }
