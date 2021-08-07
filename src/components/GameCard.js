@@ -27,6 +27,7 @@ function GameCard(props) {
 
   function addToCart() {
     if (items.includes(game)) {
+      // console.log("ja existe");
       let cart = items.map((item) => {
         if (item.id === game.id) {
           item.quantity = item.quantity + 1;
@@ -35,8 +36,8 @@ function GameCard(props) {
       });
       setItems(cart);
     } else {
+      // console.log("nao existe");
       game["quantity"] = 1;
-
       setItems([...items, game]);
     }
 

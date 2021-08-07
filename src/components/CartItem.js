@@ -26,17 +26,6 @@ var imageMap = {
 function CartItem(props) {
   const { items, setItems } = useCart();
 
-  function removeGamefromCart(game) {
-    ArrayremoveGamefromCart = items;
-    for (let i = 0; i < items.length; i++) {
-      if (items[i].id == game.id) {
-        ArrayremoveGamefromCart.splice(i, 1);
-      }
-    }
-    console.log(ArrayremoveGamefromCart);
-    setItems(ArrayremoveGamefromCart);
-  }
-
   function incrementGameQuantity(game) {
     console.log("increase game quantity");
     let cart = items.map((item) => {

@@ -4,8 +4,6 @@ import {
   Text,
   View,
   Image,
-  Button,
-  Alert,
   TextInput,
   TouchableOpacity,
   ScrollView,
@@ -30,8 +28,14 @@ function Cart({ navigation }) {
   const [shippingData, setShippingData] = useState(null);
   const [showCepModal, setShowCepModal] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [disableCheckout, setDisableCheckout] = useState(true);
 
   const { items, setItems, totalValue, itemsQuantity } = useCart();
+
+  useEffect(() => {
+    if (shippingPrice && items.length > 0) {
+    }
+  }, [shippingPrice, items.length]);
   //console.log(items);
 
   function getAddressData() {
@@ -162,6 +166,7 @@ function Cart({ navigation }) {
             style={[
               styles.checkoutButtonContainer,
               styles.checkoutButtonTouchArea,
+              { opacity: disableCheckout ? 0.6 : 1 },
             ]}
             onPress={() => setModalVisible(!modalVisible)}
           >

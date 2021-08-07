@@ -1,6 +1,8 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import products from "../utils/products";
+
 const CartContext = createContext();
 
 export default function CartProvider({ children }) {
@@ -39,22 +41,40 @@ export default function CartProvider({ children }) {
   }
 
   useEffect(() => {
-    //AsyncStorage.clear();
     getData().then((data) => {
       if (data) {
-        setItems(data);
+        let cart = [];
+        products.map((product) => {
+          if (data[product.id]) {
+            // console.log("existe");
+            let item = product;
+            item["quantity"] = data[product.id];
+            cart.push(item);
+          }
+        });
+
+        // console.log(cart);
+        setItems(cart);
       }
     });
   }, []);
 
   useEffect(() => {
-    storeData(items);
+    const persistentCart = {};
+    items.forEach((element, index) => {
+      persistentCart[element.id] = element.quantity;
+    });
+    storeData(persistentCart);
   }, [items]);
 
   useEffect(() => {
     calculeAmount();
     calculateItemsQuantity();
   }, [items]);
+
+  // useEffect(() => {
+  //   console.log(items);
+  // }, [items]);
 
   return (
     <CartContext.Provider
