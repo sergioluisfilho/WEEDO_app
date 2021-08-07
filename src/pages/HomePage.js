@@ -28,7 +28,7 @@ function HomePage({ navigation }) {
     if (modalVisible == true) {
       setTimeout(() => {
         setModalVisible(false);
-      }, 1500);
+      }, 1200);
     }
   }, [modalVisible]);
 

@@ -12,6 +12,7 @@ import {
   Modal,
   Pressable,
 } from "react-native";
+
 import axios from "axios";
 
 import { useCart } from "../context/CartContext";
@@ -20,6 +21,8 @@ import HeaderCart from "../components/HeaderCart";
 import CartItemsContainer from "../components/CartItemsContainer";
 
 import MapMark from "../assets/map-mark.png";
+
+import CartCheck from "../assets/cart-check.png";
 
 function Cart({ navigation }) {
   const [CEP, setCEP] = useState(null);
@@ -57,115 +60,134 @@ function Cart({ navigation }) {
   }
 
   return (
-    <ScrollView style={styles.cartContainer}>
-      <HeaderCart navigation={navigation} />
-      <CartItemsContainer />
-      <View style={styles.shippingContainer}>
-        <Text style={styles.shippingTitle}>Calcule o frete</Text>
-        <View style={styles.cepContainer}>
-          <TextInput
-            placeholder="seu CEP"
-            keyboardType="numeric"
-            style={styles.input}
-            onChangeText={setCEP}
-            value={CEP}
-          />
-          <TouchableOpacity style={styles.MapMark} onPress={getAddressData}>
-            <Image source={MapMark} />
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      {showCepModal ? (
-        <View>
-          <View style={styles.triangleContainer}>
-            <View style={styles.triangle}></View>
-          </View>
-          <View style={styles.addressModal}>
-            <Text style={styles.address}>
-              {shippingData.logradouro}, {shippingData.bairro}:{" "}
-              {shippingData.localidade}
-            </Text>
-            <Text style={styles.shippingValue}>
-              Valor do frete: R${shippingPrice}
-            </Text>
-          </View>
-        </View>
-      ) : (
-        <View />
-      )}
-      <View style={styles.purchaseSummary}>
-        {showCepModal && (
-          <View style={styles.purchaseSummaryLine}>
-            <Text style={styles.purchaseSummaryText}>frete</Text>
-            <Text style={styles.purchaseSummaryTextBold}>
-              R${shippingPrice}
-            </Text>
-          </View>
-        )}
-        <View style={styles.purchaseSummaryLine}>
-          <Text style={styles.purchaseSummaryText}>{itemsQuantity} itens</Text>
-          <Text style={styles.cartAmount}>R${totalValue}</Text>
-        </View>
-      </View>
-      <Button
-        title="Finalizar Compra"
-        onPress={() => setModalVisible(!modalVisible)}
-      />
-      {/* modalcode */}
-      <View style={styles.centeredView}>
-        <Modal
-          animationType="fade"
-          transparent={true}
-          visible={modalVisible}
-          onRequestClose={() => {
-            setModalVisible(!modalVisible);
-          }}
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <View style={styles.modalTitle}>
-                <Text style={styles.modalTitleText}>Compra</Text>
-                <Text style={styles.modalTitleBold}>Finalizada</Text>
-              </View>
-              <Text style={styles.modalSucessText}>
-                Sua Compra foi finalizada com sucesso!
-              </Text>
-              <View style={styles.modalPurchaseResume}>
-                <Text style={styles.modalPurchaseResumeText}>
-                  Valor da compra:{" "}
-                </Text>
-                <Text style={styles.modalPurchaseResumeValue}>
-                  R${shippingPrice + totalValue}
-                </Text>
-              </View>
-              <View style={styles.buttonContainer}>
-                <Pressable
-                  style={[styles.button, styles.buttonClose]}
-                  onPress={() => {
-                    checkout();
-                    setModalVisible(!modalVisible);
-                  }}
-                >
-                  <Text style={styles.textStyle}>Voltar para a Home</Text>
-                </Pressable>
-              </View>
+    <View style={styles.windowContainer}>
+      <ScrollView bounces={false}>
+        <View style={styles.cartContainer}>
+          <HeaderCart navigation={navigation} />
+          <CartItemsContainer />
+          <View style={styles.shippingContainer}>
+            <Text style={styles.shippingTitle}>Calcule o frete</Text>
+            <View style={styles.cepContainer}>
+              <TextInput
+                placeholder="seu CEP"
+                keyboardType="numeric"
+                style={styles.input}
+                onChangeText={setCEP}
+                value={CEP}
+              />
+              <TouchableOpacity style={styles.MapMark} onPress={getAddressData}>
+                <Image source={MapMark} />
+              </TouchableOpacity>
             </View>
           </View>
-        </Modal>
-      </View>
-    </ScrollView>
+
+          {showCepModal ? (
+            <View>
+              <View style={styles.triangleContainer}>
+                <View style={styles.triangle}></View>
+              </View>
+              <View style={styles.addressModal}>
+                <Text style={styles.address}>
+                  {shippingData.logradouro}, {shippingData.bairro}:{" "}
+                  {shippingData.localidade}
+                </Text>
+                <Text style={styles.shippingValue}>
+                  Valor do frete: R${shippingPrice}
+                </Text>
+              </View>
+            </View>
+          ) : (
+            <View />
+          )}
+          <View style={styles.purchaseSummary}>
+            {showCepModal && (
+              <View style={styles.purchaseSummaryLine}>
+                <Text style={styles.purchaseSummaryText}>frete</Text>
+                <Text style={styles.purchaseSummaryTextBold}>
+                  R${shippingPrice}
+                </Text>
+              </View>
+            )}
+            <View style={styles.purchaseSummaryLine}>
+              <Text style={styles.purchaseSummaryText}>
+                {itemsQuantity} itens
+              </Text>
+              <Text style={styles.cartAmount}>R${totalValue}</Text>
+            </View>
+          </View>
+          <View style={styles.centeredView}>
+            <Modal
+              animationType="fade"
+              transparent={true}
+              visible={modalVisible}
+              onRequestClose={() => {
+                setModalVisible(!modalVisible);
+              }}
+            >
+              <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                  <View style={styles.modalTitle}>
+                    <Text style={styles.modalTitleText}>Compra</Text>
+                    <Text style={styles.modalTitleBold}>Finalizada</Text>
+                  </View>
+                  <Text style={styles.modalSucessText}>
+                    Sua Compra foi finalizada com sucesso!
+                  </Text>
+                  <View style={styles.modalPurchaseResume}>
+                    <Text style={styles.modalPurchaseResumeText}>
+                      Valor da compra:{" "}
+                    </Text>
+                    <Text style={styles.modalPurchaseResumeValue}>
+                      R${shippingPrice + totalValue}
+                    </Text>
+                  </View>
+                  <View style={styles.buttonContainer}>
+                    <Pressable
+                      style={[styles.button, styles.buttonClose]}
+                      onPress={() => {
+                        checkout();
+                        setModalVisible(!modalVisible);
+                      }}
+                    >
+                      <Text style={styles.textStyle}>Voltar para a Home</Text>
+                    </Pressable>
+                  </View>
+                </View>
+              </View>
+            </Modal>
+          </View>
+        </View>
+        <View style={styles.checkoutButtonContainer}>
+          <TouchableOpacity
+            style={[
+              styles.checkoutButtonContainer,
+              styles.checkoutButtonTouchArea,
+            ]}
+            onPress={() => setModalVisible(!modalVisible)}
+          >
+            <Text style={styles.CheckoutButtonText}>
+              Finalizar <Text style={styles.CheckoutButtonBold}>Compra</Text>
+            </Text>
+            <Image style={styles.CheckoutButtonImg} source={CartCheck} />
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  cartContainer: {
+  windowContainer: {
     flex: 1,
+    backgroundColor: "#4CC5D2",
+  },
+  cartContainer: {
     backgroundColor: "#fff",
     paddingLeft: 16,
     paddingRight: 16,
-    paddingBottom: 20,
     paddingTop: 20,
+    borderBottomLeftRadius: 80,
+    borderBottomRightRadius: 80,
   },
   shippingContainer: {
     justifyContent: "space-evenly",
@@ -243,6 +265,7 @@ const styles = StyleSheet.create({
     marginLeft: "7%",
     marginRight: "7%",
     padding: 16,
+    marginBottom: 40,
   },
   purchaseSummaryLine: {
     flexDirection: "row",
@@ -326,6 +349,24 @@ const styles = StyleSheet.create({
   },
   modalPurchaseResumeText: { flex: 1, fontSize: 16, color: "#878787" },
   modalPurchaseResumeValue: { fontSize: 20, fontWeight: "bold" },
+  checkoutButtonContainer: {
+    height: 80,
+  },
+  checkoutButtonTouchArea: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginLeft: "10%",
+    marginRight: "10%",
+    justifyContent: "space-between",
+  },
+  CheckoutButtonText: {
+    fontSize: 20,
+    color: "#fff",
+  },
+  CheckoutButtonBold: {
+    fontWeight: "bold",
+  },
+  CheckoutButtonImg: {},
 });
 
 export default Cart;
