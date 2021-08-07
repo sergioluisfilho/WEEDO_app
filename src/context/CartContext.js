@@ -46,14 +46,12 @@ export default function CartProvider({ children }) {
         let cart = [];
         products.map((product) => {
           if (data[product.id]) {
-            // console.log("existe");
             let item = product;
             item["quantity"] = data[product.id];
             cart.push(item);
           }
         });
 
-        // console.log(cart);
         setItems(cart);
       }
     });

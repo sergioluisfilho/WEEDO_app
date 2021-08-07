@@ -36,7 +36,7 @@ function HomePage({ navigation }) {
     <View style={styles.container}>
       <StatusBar
         animated={true}
-        backgroundColor="#61dafb"
+        backgroundColor="#fff"
         barStyle={statusBarStyle}
       />
       <FlatList

@@ -28,12 +28,17 @@ function Cart({ navigation }) {
   const [shippingData, setShippingData] = useState(null);
   const [showCepModal, setShowCepModal] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const [disableCheckout, setDisableCheckout] = useState(true);
+  const [canCheckout, setCanCheckout] = useState(false);
 
   const { items, setItems, totalValue, itemsQuantity } = useCart();
 
   useEffect(() => {
     if (shippingPrice && items.length > 0) {
+      console.log("pode jogar");
+      setCanCheckout(true);
+    } else {
+      console.log("nao pode jogar");
+      setCanCheckout(false);
     }
   }, [shippingPrice, items.length]);
   //console.log(items);
@@ -166,9 +171,9 @@ function Cart({ navigation }) {
             style={[
               styles.checkoutButtonContainer,
               styles.checkoutButtonTouchArea,
-              { opacity: disableCheckout ? 0.6 : 1 },
+              { opacity: 1 },
             ]}
-            onPress={() => setModalVisible(!modalVisible)}
+            onPress={() => canCheckout && setModalVisible(!modalVisible)}
           >
             <Text style={styles.CheckoutButtonText}>
               Finalizar <Text style={styles.CheckoutButtonBold}>Compra</Text>
