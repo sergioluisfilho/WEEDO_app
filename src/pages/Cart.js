@@ -71,6 +71,11 @@ function Cart({ navigation }) {
       });
   }
 
+  function IsPlural(value) {
+    if (value >1) return "itens"
+    else return "item"
+  }
+
   function checkout() {
     setItems([]);
     navigation.navigate("HomePage");
@@ -129,7 +134,7 @@ function Cart({ navigation }) {
             )}
             <View style={styles.purchaseSummaryLine}>
               <Text style={styles.purchaseSummaryText}>
-                {itemsQuantity} itens
+                {itemsQuantity} {IsPlural(itemsQuantity)} 
               </Text>
               <Text style={styles.cartAmount}>
                 R${totalValue.toFixed(2).toString().replace(".", ",")}

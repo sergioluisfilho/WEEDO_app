@@ -62,7 +62,7 @@ function GameCard(props) {
       ></Card.Image>
 
       <View style={styles.gameInfoContainer}>
-        <Text style={styles.gameTitle}>{game.name}</Text>
+        <View style={styles.titleContainer}><Text style={styles.gameTitle}>{game.name}</Text></View>
         <Text style={styles.cardInfo}>Plataforma: {game.platform}</Text>
         <Text style={styles.cardInfo}>Categoria/Gênero: </Text>
         <View style={styles.categoriesContainer}>
@@ -112,6 +112,9 @@ const styles = StyleSheet.create({
     width: 160,
     height: 78,
   },
+  titleContainer: {
+    height: 60 
+  },
   gameTitle: {
     marginLeft: 8,
     marginTop: 10,
@@ -126,12 +129,15 @@ const styles = StyleSheet.create({
   },
   categoriesContainer: {
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "flex-start",
     marginTop: 3,
+    marginLeft: 6,
+    marginRight: 6,
   },
   categoryInfoContainer: {
     backgroundColor: "#DBDBDB",
-
+    marginLeft: 3,
+    marginRight: 3,
     borderRadius: 6,
   },
   categoryInfo: {
