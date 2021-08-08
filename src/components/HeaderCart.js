@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
-import Arrow from "../assets/arrow-right.png";
+import Arrow from "../assets/arrow-right.js";
 
 function HeaderCart({ navigation }) {
   return (
@@ -11,7 +11,7 @@ function HeaderCart({ navigation }) {
           style={styles.arrowButton}
           onPress={() => navigation.navigate("HomePage")}
         >
-          <Image source={Arrow} />
+          <Arrow />
         </TouchableOpacity>
       </View>
 

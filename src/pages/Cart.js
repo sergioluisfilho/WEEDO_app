@@ -21,7 +21,7 @@ import CartItemsContainer from "../components/CartItemsContainer";
 
 import MapMark from "../assets/map-mark.js";
 
-import CartCheck from "../assets/cart-check.png";
+import CartCheck from "../assets/cart-check.js";
 
 function Cart({ navigation }) {
   const [CEP, setCEP] = useState(null);
@@ -195,7 +195,8 @@ function Cart({ navigation }) {
             <Text style={styles.CheckoutButtonText}>
               Finalizar <Text style={styles.CheckoutButtonBold}>Compra</Text>
             </Text>
-            <Image style={styles.CheckoutButtonImg} source={CartCheck} />
+            {/* <Image style={styles.CheckoutButtonImg} source={CartCheck} /> */}
+            <CartCheck/>
           </TouchableOpacity>
         </View>
       </ScrollView>

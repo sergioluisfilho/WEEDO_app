@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { Card, Button } from "react-native-elements";
 
-import Cart from "../assets/cart.png";
+import Cart from "../assets/cart.js";
 
 var imageMap = {
   "animalCrossing.png": require("../assets/images/animalCrossing.png"),
@@ -82,7 +82,7 @@ function GameCard(props) {
           onPress={addToCart}
         >
 
-          <Image  source={Cart}/>
+          <Cart/>
           {isFreeToPlay(game)}
          
         </TouchableOpacity>

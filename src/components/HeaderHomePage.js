@@ -1,20 +1,20 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
-import Logo from "../assets/it.png";
-import Cart from "../assets/cart.png";
+import Logo from "../assets/it.js";
+import Cart from "../assets/cart.js";
 
 function HeaderHomePage({ navigation }) {
   return (
     <>
       <View style={styles.appBar}>
-        <Image source={Logo} />
+        <Logo />
         <TouchableOpacity
           style={styles.cartButton}
           title="Carrinho"
           onPress={() => navigation.navigate("Cart")}
         >
-          <Image source={Cart} />
+          <Cart />
         </TouchableOpacity>
       </View>
 
