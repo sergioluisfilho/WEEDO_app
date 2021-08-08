@@ -82,6 +82,7 @@ function Cart({ navigation }) {
         <View style={styles.cartContainer}>
           <HeaderCart navigation={navigation} />
           <CartItemsContainer />
+          <View style={styles.divider} />
           <View style={styles.shippingContainer}>
             <Text style={styles.shippingTitle}>Calcule o frete</Text>
             <View style={styles.cepContainer}>
@@ -209,6 +210,15 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     borderBottomLeftRadius: 80,
     borderBottomRightRadius: 80,
+  },
+  divider: {
+    maxWidth: "15%",
+    height: 4,
+    borderRadius: 20,
+    backgroundColor: "#DBDBDB",
+    marginLeft: "45%",
+    marginTop: 29,
+    marginBottom: 26,
   },
   shippingContainer: {
     justifyContent: "space-evenly",
