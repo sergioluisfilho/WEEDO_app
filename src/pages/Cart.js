@@ -19,7 +19,7 @@ import { useCart } from "../context/CartContext";
 import HeaderCart from "../components/HeaderCart";
 import CartItemsContainer from "../components/CartItemsContainer";
 
-import MapMark from "../assets/map-mark.png";
+import MapMark from "../assets/map-mark.js";
 
 import CartCheck from "../assets/cart-check.png";
 
@@ -99,7 +99,7 @@ function Cart({ navigation }) {
                 value={CEP}
               />
               <TouchableOpacity style={styles.MapMark} onPress={getAddressData}>
-                <Image source={MapMark} />
+              <MapMark/>
               </TouchableOpacity>
             </View>
           </View>
