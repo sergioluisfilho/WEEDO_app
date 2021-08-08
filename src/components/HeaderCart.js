@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   titleBold: {
     marginLeft: 12,
     marginRight: 12,
-    fontWeight: "bold",
+    fontFamily: "OpenSans-Bold",
     fontSize: 32,
   },
 });

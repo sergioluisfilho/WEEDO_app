@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 8,
     fontSize: 14,
-    fontWeight: "bold",
+    fontFamily: "OpenSans-Bold",
     color: "#303030",
     alignItems: "center",
   },

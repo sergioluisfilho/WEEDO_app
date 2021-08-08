@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   shippingValue: {
-    fontWeight: "bold",
+    fontFamily: "OpenSans-Bold",
     fontSize: 16,
   },
   purchaseSummary: {
@@ -308,12 +308,12 @@ const styles = StyleSheet.create({
   },
   purchaseSummaryTextBold: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontFamily: "OpenSans-Bold",
     color: "black",
   },
   cartAmount: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontFamily: "OpenSans-Bold",
     color: "black",
   },
   // modal css
@@ -370,7 +370,7 @@ const styles = StyleSheet.create({
   },
   modalTitle: { marginBottom: 34 },
   modalTitleText: { fontSize: 32 },
-  modalTitleBold: { fontSize: 32, fontWeight: "bold" },
+  modalTitleBold: { fontSize: 32, fontFamily: "OpenSans-Bold" },
   modalSucessText: { fontSize: 16 },
   modalPurchaseResume: {
     flexDirection: "row",
@@ -379,7 +379,7 @@ const styles = StyleSheet.create({
     marginBottom: 14,
   },
   modalPurchaseResumeText: { flex: 1, fontSize: 16, color: "#878787" },
-  modalPurchaseResumeValue: { fontSize: 20, fontWeight: "bold" },
+  modalPurchaseResumeValue: { fontSize: 20, fontFamily: "OpenSans-Bold" },
   checkoutButtonContainer: {
     height: 80,
   },
@@ -396,7 +396,7 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   CheckoutButtonBold: {
-    fontWeight: "bold",
+    fontFamily: "OpenSans-Bold",
   },
   CheckoutButtonImg: {},
 });

@@ -54,10 +54,12 @@ function CartItem(props) {
   function isFreeToPlay(game) {
     if (game.price > 0) {
       return (
-        <Text>R${game.price.toFixed(2).toString().replace(".", ",")}</Text>
+        <Text style={styles.gamePrice}>
+          R${game.price.toFixed(2).toString().replace(".", ",")}
+        </Text>
       );
     } else {
-      return <Text>Gratuito p/ Jogar</Text>;
+      return <Text style={styles.gamePrice}>Gratuito p/ Jogar</Text>;
     }
   }
 
@@ -66,7 +68,7 @@ function CartItem(props) {
       <View style={styles.imgAndInfoContainer}>
         <Image style={styles.gameImg} source={imageMap[game.imageName]} />
         <View style={styles.InfoContainer}>
-          <Text>{game.name}</Text>
+          <Text style={styles.gameTitle}>{game.name}</Text>
           {isFreeToPlay(game)}
         </View>
       </View>
@@ -77,7 +79,7 @@ function CartItem(props) {
         >
           <Text>+</Text>
         </TouchableOpacity>
-        <Text>{game.quantity}</Text>
+        <Text style={styles.gameQuantity}>{game.quantity}</Text>
         <TouchableOpacity
           onPress={() => decrementGameQuantity(game)}
           style={styles.incrementBtn}
@@ -113,6 +115,18 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     width: 110,
     height: 110,
+  },
+  gameTitle: {
+    fontSize: 14,
+    marginBottom: 5,
+  },
+  gamePrice: {
+    fontSize: 16,
+    fontFamily: "OpenSans-Bold",
+  },
+  gameQuantity: {
+    fontSize: 14,
+    fontFamily: "OpenSans-Bold",
   },
   quantityContainer: {
     backgroundColor: "#DBDBDB",
