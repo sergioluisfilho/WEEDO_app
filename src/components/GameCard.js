@@ -161,8 +161,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingLeft: "15%",
-    paddingRight: "15%"
+    paddingLeft: "10%",
+    paddingRight: "10%"
   },
   cardBtnText: {
     color: "#fff",
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
 
   cardBtnTextF2P: {
     color: "#fff",
-    fontSize: 10
+    fontSize: 12
   },
   cardInfo: { paddingBottom: 2, fontSize: 9, color: "#303030", marginLeft: 9 },
 });
