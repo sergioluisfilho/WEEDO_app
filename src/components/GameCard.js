@@ -46,9 +46,9 @@ function GameCard(props) {
 
   function isFreeToPlay(game) {
     if (game.price > 0) {
-      return `R$${game.price.toFixed(2).toString().replace(".", ",")}`;
+      return  <Text  style={styles.cardBtnText}>R${game.price.toFixed(2).toString().replace(".", ",")}</Text>;
     } else {
-      return "Gratuito p/ Jogar";
+      return <Text style={styles.cardBtnTextF2P}>Gratuito p/ Jogar</Text>;
     }
   }
 
@@ -77,12 +77,15 @@ function GameCard(props) {
         </View>
       </View>
       <View>
-        <Button
-          icon={<Image source={Cart} />}
-          buttonStyle={styles.cardBtn}
-          title={isFreeToPlay(game)}
+        <TouchableOpacity
+          style={styles.cardBtn}
           onPress={addToCart}
-        />
+        >
+
+          <Image  source={Cart}/>
+          {isFreeToPlay(game)}
+         
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -149,6 +152,20 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
     height: 37,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingLeft: "15%",
+    paddingRight: "15%"
+  },
+  cardBtnText: {
+    color: "#fff",
+    fontSize: 16
+  },
+
+  cardBtnTextF2P: {
+    color: "#fff",
+    fontSize: 10
   },
   cardInfo: { paddingBottom: 2, fontSize: 9, color: "#303030", marginLeft: 9 },
 });
