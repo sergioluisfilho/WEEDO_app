@@ -79,6 +79,27 @@ function Cart({ navigation }) {
     else return "item";
   }
 
+  // async function sendPurchaseToApi(data) {
+  //   const data = {
+  //     cart: items,
+  //     amount: totalValue,
+  //     address: `${shippingData.logradouro}, ${shippingData.bairro}: ${shippingData.localidade} - ${shippingData.uf}`, //{shippingData.logradouro}, {shippingData.bairro} {shippingData.localidade}
+  //   };
+
+  //   await axios
+  //     .post("http://localhost:3333/save", data)
+  //     .then((response) => {
+  //       console.log(response);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+
+  //   if (canCheckout) {
+  //     setModalVisible(!modalVisible);
+  //   }
+  // }
+
   function checkout() {
     setItems([]);
     navigation.navigate("HomePage");
