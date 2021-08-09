@@ -54,8 +54,11 @@ function Cart({ navigation }) {
     axios
       .get(`https://viacep.com.br/ws/${CEP}/json`)
       .then((response) => {
-        console.log(response.data);
-        if (response.data.uf == "PE") {
+        if (response.data.erro) {
+          console.log(response.data);
+          setShowCepModal(false);
+          Alert.alert("CEP inválido");
+        } else if (response.data.uf == "PE") {
           setShippingPrice(100);
           setShippingData(response.data);
           setShowCepModal(true);
@@ -72,8 +75,8 @@ function Cart({ navigation }) {
   }
 
   function IsPlural(value) {
-    if (value >1) return "itens"
-    else return "item"
+    if (value > 1) return "itens";
+    else return "item";
   }
 
   function checkout() {
@@ -99,7 +102,7 @@ function Cart({ navigation }) {
                 value={CEP}
               />
               <TouchableOpacity style={styles.MapMark} onPress={getAddressData}>
-              <MapMark/>
+                <MapMark />
               </TouchableOpacity>
             </View>
           </View>
@@ -134,7 +137,7 @@ function Cart({ navigation }) {
             )}
             <View style={styles.purchaseSummaryLine}>
               <Text style={styles.purchaseSummaryText}>
-                {itemsQuantity} {IsPlural(itemsQuantity)} 
+                {itemsQuantity} {IsPlural(itemsQuantity)}
               </Text>
               <Text style={styles.cartAmount}>
                 R${totalValue.toFixed(2).toString().replace(".", ",")}
@@ -196,7 +199,11 @@ function Cart({ navigation }) {
               Finalizar <Text style={styles.CheckoutButtonBold}>Compra</Text>
             </Text>
             {/* <Image style={styles.CheckoutButtonImg} source={CartCheck} /> */}
-            <CartCheck/>
+            <View
+              style={{ backgroundColor: "#fff", padding: 7, borderRadius: 50 }}
+            >
+              <CartCheck />
+            </View>
           </TouchableOpacity>
         </View>
       </ScrollView>

@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { Card, Button } from "react-native-elements";
 
-import Cart from "../assets/cart.js";
+import Cart from "../assets/add-to-cart.js";
 
 var imageMap = {
   "animalCrossing.png": require("../assets/images/animalCrossing.png"),
@@ -46,7 +46,11 @@ function GameCard(props) {
 
   function isFreeToPlay(game) {
     if (game.price > 0) {
-      return  <Text  style={styles.cardBtnText}>R${game.price.toFixed(2).toString().replace(".", ",")}</Text>;
+      return (
+        <Text style={styles.cardBtnText}>
+          R${game.price.toFixed(2).toString().replace(".", ",")}
+        </Text>
+      );
     } else {
       return <Text style={styles.cardBtnTextF2P}>Gratuito p/ Jogar</Text>;
     }
@@ -62,7 +66,9 @@ function GameCard(props) {
       ></Card.Image>
 
       <View style={styles.gameInfoContainer}>
-        <View style={styles.titleContainer}><Text style={styles.gameTitle}>{game.name}</Text></View>
+        <View style={styles.titleContainer}>
+          <Text style={styles.gameTitle}>{game.name}</Text>
+        </View>
         <Text style={styles.cardInfo}>Plataforma: {game.platform}</Text>
         <Text style={styles.cardInfo}>Categoria/Gênero: </Text>
         <View style={styles.categoriesContainer}>
@@ -77,14 +83,9 @@ function GameCard(props) {
         </View>
       </View>
       <View>
-        <TouchableOpacity
-          style={styles.cardBtn}
-          onPress={addToCart}
-        >
-
-          <Cart/>
+        <TouchableOpacity style={styles.cardBtn} onPress={addToCart}>
+          <Cart />
           {isFreeToPlay(game)}
-         
         </TouchableOpacity>
       </View>
     </View>
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
     height: 78,
   },
   titleContainer: {
-    height: 60 
+    height: 60,
   },
   gameTitle: {
     marginLeft: 8,
@@ -160,18 +161,20 @@ const styles = StyleSheet.create({
     height: 37,
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
     paddingLeft: "10%",
-    paddingRight: "10%"
+    paddingRight: "10%",
   },
   cardBtnText: {
     color: "#fff",
-    fontSize: 16
+    fontSize: 16,
+    paddingLeft: 8,
   },
 
   cardBtnTextF2P: {
     color: "#fff",
-    fontSize: 12
+    fontSize: 12,
+    paddingLeft: 8,
   },
   cardInfo: { paddingBottom: 2, fontSize: 9, color: "#303030", marginLeft: 9 },
 });
