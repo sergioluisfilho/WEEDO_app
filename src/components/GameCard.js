@@ -25,6 +25,14 @@ import { useCart } from "../context/CartContext";
 function GameCard(props) {
   const game = props.game;
 
+  function calculateFontSize(value) {
+    if (value > 15) {
+      return 12;
+    } else {
+      14;
+    }
+  }
+
   function addToCart() {
     if (items.includes(game)) {
       // console.log("ja existe");
@@ -67,7 +75,14 @@ function GameCard(props) {
 
       <View style={styles.gameInfoContainer}>
         <View style={styles.titleContainer}>
-          <Text style={styles.gameTitle}>{game.name}</Text>
+          <Text
+            style={[
+              styles.gameTitle,
+              { fontSize: calculateFontSize(game.name.length) },
+            ]}
+          >
+            {game.name}
+          </Text>
         </View>
         <Text style={styles.cardInfo}>Plataforma: {game.platform}</Text>
         <Text style={styles.cardInfo}>Categoria/Gênero: </Text>

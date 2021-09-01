@@ -43,7 +43,7 @@ const games = [
     id: 6,
     name: "Knockout City",
     platform: "PC / Nintendo Switch",
-    categories: ["Ação", "Aventura", "Esportes"],
+    categories: ["Ação", "Aventura"],
     price: 99.0,
     imageName: "knockOutCity.png",
   },
